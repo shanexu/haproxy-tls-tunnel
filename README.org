@@ -1,0 +1,32 @@
+* usage
+
+  1. 生成证书
+     #+begin_src shell-script
+       ./makecert.sh
+     #+end_src
+  2. 启动server
+     #+begin_src shell-script
+       go run server/main.go
+     #+end_src
+  3. 启动server端，反向代理
+     #+begin_src shell-script
+       haproxy -f server/haproxy.cfg
+     #+end_src
+  4. 启动client端，反向代理
+     #+begin_src shell-script
+       haproxy -f client/haproxy.cfg
+     #+end_src
+  5. 测试客户端端
+     #+begin_src shell-script
+       go run client/main.go -addr 127.0.0.1:8081
+     #+end_src
+
+* 简单原理
+
+  #+begin_src text
+                    +---------+                +---------+      +--------+
+    +--------+      | haproxy |                | haproxy |      | server |
+    | client | ---> |         | ---tls*tcp---> |         | ---> |        |
+    +--------+      | :8081   |                | :8443   |      | :8080  |
+                    +---------+                +---------+      +--------+
+  #+end_src
