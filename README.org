@@ -8,6 +8,13 @@
      #+begin_src shell-script
        go run server/main.go -addr 127.0.0.1:8080
      #+end_src
+
+     也可以使用Python
+
+     #+begin_src shell-script
+       python server.py
+     #+end_src
+     
   3. 启动server端，反向代理
      #+begin_src shell-script
        haproxy -f server/haproxy.cfg
@@ -16,6 +23,15 @@
      #+begin_src shell-script
        haproxy -f client/haproxy.cfg
      #+end_src
+
+     也可以使用Python
+
+     #+begin_src shell-script
+       python client.py
+     #+end_src
+
+     也可以使用telnet
+     
   5. 测试client端
      #+begin_src shell-script
        go run client/main.go -addr 127.0.0.1:8081
