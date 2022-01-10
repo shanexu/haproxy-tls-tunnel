@@ -2,7 +2,7 @@
 
   1. 生成证书
      #+begin_src shell-script
-       ./makecert.sh
+       ./makecert.sh xusheng0711@gmail.com
      #+end_src
   2. 启动server
      #+begin_src shell-script
